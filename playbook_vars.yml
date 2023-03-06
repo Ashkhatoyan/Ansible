@@ -1,0 +1,32 @@
+---
+- name: Playbook with Vars
+  hosts: all
+  become: yes
+
+
+  vars:
+    message1: Hey
+    message2: World
+    secret: ASVWEASFAF-089
+  tasks:
+
+  - name: Print secret Var
+    debug:
+      var: secret
+
+  - debug:
+      msg: "Secret word: {{ secret }}"
+
+  - set_fact: full_message="{{ message1 }} {{ message2 }}"
+
+  - debug:
+      var: full_message
+
+  - debug:
+      var: ansible_nodename
+
+  - shell: uptime
+    register: results
+
+  - debug:
+      var: results
