@@ -39,13 +39,13 @@
       <img src="https://picsum.photos/seed/3/200" alt="Random Image 3">
       <h2>Here are some colored divs:</h2>
       <div style="background-color: #ff9999; padding: 10px;">
-        <p>This is a red div.</p>
+        <p>Server os: {{ ansible_os_family  }}.</p>
       </div>
       <div style="background-color: #99ff99; padding: 10px;">
-        <p>This is a green div.</p>
+        <p>Owner of this server is: {{ owner }}.</p>
       </div>
       <div style="background-color: #9999ff; padding: 10px;">
-        <p>This is a blue div.</p>
+        <p>Hostname: {{ ansible_hostname }}.</p>
       </div>
     </div>
   </body>

@@ -1,23 +1,22 @@
 ---
 - name: install Apache and Upload to my servers
-  hosts: Slave2
+  hosts: all
   become: yes
 
   vars:
-    - source_files: ./Website2/index.html
-    - dest_file: /var/www/html
+    - source_folder: ./Website2
+    - dest_folder: /var/www/html
 
   tasks:
     - name: Install Apache Web Server
       yum:
         name: httpd
         state: latest
-
-    - name: Copy HTML file to server
-      copy:
-        src: "{{ source_files }}"
-        dest: "{{ dest_file }}"
-        mode: "0555"
+    - name: Generate index.html
+      template:
+         src: "{{ source_folder }}/index.j2"
+         dest: "{{ dest_folder }}"
+         mode: 0555
       notify: Restart Apache
 
     - name: Start web servers and make enable onbooot
@@ -31,3 +30,5 @@
       service:
         name: httpd
         state: restarted
+
+
