@@ -43,5 +43,5 @@
 ## db-[99:101]-node.example.com
 
 [slave01]
-Slave1  ansible_host=192.168.0.244
-Slave2	ansible_host=192.168.0.203
+Slave1  ansible_host=192.168.0.244 owner=root
+Slave2	ansible_host=192.168.0.203 owner=admin
