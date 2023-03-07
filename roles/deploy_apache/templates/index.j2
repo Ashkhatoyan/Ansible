@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Example Page Deployed using Ansible Roles</title>
+    <style>
+      body {
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        color: #006699;
+      }
+      #header {
+        background-color: #eeeeee;
+        padding: 10px;
+      }
+      #content {
+        background-color: #ffffff;
+        padding: 20px;
+        margin: 10px;
+        border: 1px solid #cccccc;
+      }
+      img {
+        width: 200px;
+        height: auto;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Welcome to My Example Page</h1>
+    </div>
+    <div id="content">
+      <h2>Here are some images:</h2>
+      <img src="https://picsum.photos/seed/1/200" alt="Random Image 1">
+      <img src="https://picsum.photos/seed/2/200" alt="Random Image 2">
+      <img src="https://picsum.photos/seed/3/200" alt="Random Image 3">
+      <h2>Here are some colored divs:</h2>
+      <div style="background-color: #ff9999; padding: 10px;">
+        <p>Server os: {{ ansible_os_family  }}.</p>
+      </div>
+      <div style="background-color: #99ff99; padding: 10px;">
+        <p>Owner of this server is: {{ owner }}.</p>
+      </div>
+      <div style="background-color: #9999ff; padding: 10px;">
+        <p>Hostname: {{ ansible_hostname }}.</p>
+      </div>
+    </div>
+  </body>
+</html>

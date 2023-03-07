@@ -3,32 +3,6 @@
   hosts: all
   become: yes
 
-  vars:
-    - source_folder: ./Website2
-    - dest_folder: /var/www/html
 
-  tasks:
-    - name: Install Apache Web Server
-      yum:
-        name: httpd
-        state: latest
-    - name: Generate index.html
-      template:
-         src: "{{ source_folder }}/index.j2"
-         dest: "{{ dest_folder }}"
-         mode: 0555
-      notify: Restart Apache
-
-    - name: Start web servers and make enable onbooot
-      service:
-        name: httpd
-        state: started
-        enabled: yes
-
-  handlers:
-    - name: Restart Apache
-      service:
-        name: httpd
-        state: restarted
-
-
+  roles:
+   - {role: deploy_apache, when: ansible_system == 'Linux'}
