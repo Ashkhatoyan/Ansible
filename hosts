@@ -42,6 +42,11 @@
 
 ## db-[99:101]-node.example.com
 
-[slave01]
+[Prod]
 Slave1  ansible_host=192.168.0.244 owner=root
+[Staging]
 Slave2	ansible_host=192.168.0.203 owner=admin
+
+[All_linux:children]
+Prod
+Staging

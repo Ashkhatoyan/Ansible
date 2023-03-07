@@ -1,6 +1,6 @@
 ---
 - name: install Apache and Upload to my servers
-  hosts: all
+  hosts: "{{ HOSTS }}"
   become: yes
 
 
