@@ -1,0 +1,17 @@
+---
+- name: Playbook for creating folders and files
+  hosts: all
+  become: yes
+
+  vars:
+   mytext: "Hello world V2.0"
+
+  tasks:
+   - name: Ping test
+     ping:
+
+   - name: Create folders
+     include_tasks: create_folders.yml
+
+   - name: Create file
+     import_tasks: create_file.yml
