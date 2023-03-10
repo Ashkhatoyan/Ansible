@@ -1,0 +1,36 @@
+---
+- name: Delegate
+  hosts: all
+  become: yes
+
+  vars:
+    mytext: "Playing with ansible"
+
+  tasks:
+  - name: Ping
+    ping:
+
+  - name: Unregister Server from LB
+    shell: echo This server {{ inventory_hostname }} was deregistered from our load balancer `{{ ansible_nodename }}` >> /home/log.txt
+    delegate_to: 127.0.0.1
+
+  - name: Create file
+    shell: |
+      echo 'This is test file
+      Hello world
+      {{ mytext }}' > /home/test.txt
+    delegate_to: Slave2
+
+  - name: Reboot servers
+    shell: sleep 3 && reboot now
+    async: 1
+    poll: 0
+
+  - name: Wait till server come up
+    wait_for:
+        host: "{{ inventory_hostname }}"
+        state: started
+        delay: 5
+        timeout: 40
+    delegate_to: 127.0.0.1
+
